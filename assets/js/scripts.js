@@ -24,7 +24,7 @@ var arrDateTime = [];
 var currentIndex;
 
 // var before = moment(today.format("hh:mm")).isBefore(moment('03:00', "hh:mm"));
-for (var i = 0; i<=23; i++){
+for (var i = 9; i<=17; i++){
     gettime = moment(i+ "","HH").format("hA");
     arrDateTime.push(gettime);
     if (gettime===today) currentIndex = i;
@@ -37,53 +37,133 @@ for (var i = 0; i<=23; i++){
 
         $('<textarea rows="3" cols="50">')
         .attr("id", "textarea" + i)
-        .addClass("col-sm-9 textarea"),
+        .addClass("col-sm-9 textarea present"),
 
         $('<div>')
         .attr("id", "saveBtn" + i)
         .addClass("col-sm-1 saveBtn")
-        .text("Save")
+        .text("💾")
     );
-
-    // var generateTime  = moment(today.format("hh:mm")).isAfter(moment('00:00', "hh:mm"));
-
-    // if(today.isAfter(gettime)){
-    //     $( "textarea" ).removeClass( "col-sm-9 textarea" ).addClass( "col-sm-9 textarea past" );
-    // } else {
-    //     $( "textarea" ).removeClass( "col-sm-9 textarea past" ).addClass( "col-sm-9 textarea" );
-    // }
-
-    // var date = moment("2013-03-24")
-    // var now = moment();
-
-    // if (today.valueOf > gettime.valueOf()) {
-    //     $( "textarea" ).removeClass( "col-sm-9 textarea" ).addClass( "col-sm-9 textarea past" );
-    // } else {
-    //     $( "textarea" ).removeClass( "col-sm-9 textarea past" ).addClass( "col-sm-9 textarea" );
-    // }
-
-    // console.log(today.valueOf());
-    // console.log(gettime.valueOf());
-    
+ 
 };
 
-for(var j= 0; j< arrDateTime.length-1; j++){
-    if(j < currentIndex && arrDateTime[j] != arrDateTime[currentIndex]){
-        $( "textarea" ).removeClass( "col-sm-9 textarea" ).addClass( "col-sm-9 textarea past" );
-    } 
-    // else if(j > currentIndex) {
-    //     $( "textarea" ).removeClass( "col-sm-9 textarea" ).addClass( "col-sm-9 textarea future" );
-    // }else{
-    //     $( "textarea" ).removeClass( "col-sm-9 textarea" ).addClass( "col-sm-9 textarea present" );
-    // }
+for(var j= 0; j< arrDateTime.length; j++){
+    var getIdexJ = j + 9;
+    var getClassNameTextArea = "#textarea" + getIdexJ;
+    if( Number(getIdexJ) < Number(currentIndex)){
+        $( getClassNameTextArea ).removeClass( "col-sm-9 textarea present" ).addClass( "col-sm-9 textarea past" );
+    }
+    if (Number(getIdexJ) > Number(currentIndex)) {
+        $( getClassNameTextArea ).removeClass( "col-sm-9 textarea present" ).addClass( "col-sm-9 textarea future" );
+    }
 }
-console.log(arrDateTime)
-console.log(today)
-console.log(currentIndex)
 
-// today.valueOf() < moment('03:00', 'hh:mm').valueOf()
-// However, moment.js also provides methods that are more readable:
+    $(divdatetime_24).click(function (event) {
+        var btnTarget = event.target.id
+        var textareaClassName = "#textarea" + btnTarget.match(/\d+/);
+        
+        if(btnTarget === "saveBtn9"){
+            var getTextEvents = $(textareaClassName).val();
+            var todayEvent = {
+                eventID:textareaClassName,
+                eventText:getTextEvents
+            }
+            btnSave(todayEvent);
+        }
 
-// today.isBefore(moment('03:00', 'hh:mm'))
+        if(btnTarget === "saveBtn10"){
+            var getTextEvents = $(textareaClassName).val();
+            var todayEvent = {
+                eventID:textareaClassName,
+                eventText:getTextEvents
+            }
+            btnSave(todayEvent);
+        }
 
-// $( "p" ).removeClass( "myClass noClass" ).addClass( "yourClass" );
+        if(btnTarget === "saveBtn11"){
+            var getTextEvents = $(textareaClassName).val();
+            var todayEvent = {
+                eventID:textareaClassName,
+                eventText:getTextEvents
+            }
+            btnSave(todayEvent);
+        }
+
+        if(btnTarget === "saveBtn12"){
+            var getTextEvents = $(textareaClassName).val();
+            var todayEvent = {
+                eventID:textareaClassName,
+                eventText:getTextEvents
+            }
+            btnSave(todayEvent);
+        }
+
+        if(btnTarget === "saveBtn13"){
+            var getTextEvents = $(textareaClassName).val();
+            var todayEvent = {
+                eventID:textareaClassName,
+                eventText:getTextEvents
+            }
+            btnSave(todayEvent);
+        }
+
+        if(btnTarget === "saveBtn14"){
+            var getTextEvents = $(textareaClassName).val();
+            var todayEvent = {
+                eventID:textareaClassName,
+                eventText:getTextEvents
+            }
+            btnSave(todayEvent);
+        }
+
+        if(btnTarget === "saveBtn15"){
+            var getTextEvents = $(textareaClassName).val();
+            var todayEvent = {
+                eventID:textareaClassName,
+                eventText:getTextEvents
+            }
+            btnSave(todayEvent);
+        }
+
+        if(btnTarget === "saveBtn16"){
+            var getTextEvents = $(textareaClassName).val();
+            var todayEvent = {
+                eventID:textareaClassName,
+                eventText:getTextEvents
+            }
+            btnSave(todayEvent);
+        }
+
+        if(btnTarget === "saveBtn17"){
+            var getTextEvents = $(textareaClassName).val();
+            var todayEvent = {
+                eventID:textareaClassName,
+                eventText:getTextEvents
+            }
+
+            btnSave(todayEvent);
+        }
+
+    });
+
+function btnSave(arr) {
+    var arrtemp = [];
+    arrtemp = JSON.parse(localStorage.getItem('todayEvents')) || [];
+    arrtemp.push(arr);
+    localStorage.setItem('todayEvents', JSON.stringify(arrtemp));
+}
+
+function btnLoadEvents () {
+    var todayEvents = JSON.parse(localStorage.getItem('todayEvents')) || [];
+    var totalEvents = Object.keys(todayEvents).length;
+
+    for(var i=0; i<totalEvents; i++){
+        var eventID = todayEvents[i]['eventID'];
+        var eventText = todayEvents[i]['eventText'];
+        $(eventID).val(eventText);
+    }
+}
+
+$(document).ready(function(){
+    btnLoadEvents ();
+});
