@@ -1,5 +1,3 @@
-
-
 // get id elements from HTML page using JQuery.
 var divcurrentDay = $('#currentDay');
 var divdatetime_24 = $('#datetime_24h');
@@ -45,17 +43,26 @@ for (var i = 9; i <= 17; i++) {
             .text("💾")
     );
 
+    // create div for make space at bottom
+    if (i === 17) {
+        divdatetime_24.append(
+            $('<div>')
+                .attr("id", "bottom-space")
+                .addClass("col-sm-1 bottom-space")
+        );
+    }
+
 };
 
 // set each time block is color-coded to indicate whether it is in the past, present, or future
 for (var j = 0; j < arrDateTime.length; j++) {
     var getIdexJ = j + 9;
-    var getClassNameTextArea = "#textarea" + getIdexJ;
+    var getIDTextArea = "#textarea" + getIdexJ;
     if (Number(getIdexJ) < Number(currentIndex)) {
-        $(getClassNameTextArea).removeClass("col-sm-9 textarea present").addClass("col-sm-9 textarea past");
+        $(getIDTextArea).removeClass("col-sm-9 textarea present").addClass("col-sm-9 textarea past");
     }
     if (Number(getIdexJ) > Number(currentIndex)) {
-        $(getClassNameTextArea).removeClass("col-sm-9 textarea present").addClass("col-sm-9 textarea future");
+        $(getIDTextArea).removeClass("col-sm-9 textarea present").addClass("col-sm-9 textarea future");
     }
 }
 

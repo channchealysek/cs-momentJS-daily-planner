@@ -12,7 +12,7 @@ textarea{
   line-height: 1.5;
   border: 1px solid white;
   box-shadow: 1px 1px 1px #999;
-resize: none;
+  resize: none;
 }
 
 .jumbotron {
@@ -88,6 +88,10 @@ resize: none;
   
 }
 
+.bottom-space{
+  height: 20px!important;
+}
+
 @media only screen and (min-width: 300px) and (max-width: 565px) {
   .jumbotron {
     padding: 4rem 2rem;
@@ -96,6 +100,14 @@ resize: none;
   .jumbotron > h1 {
     font-size: 1.8rem;
     font-weight: bold;
+  }
+
+  .jumbotron > h2 {
+    font-size: 1.2rem;
+  }
+
+  .jumbotron > p {
+    font-size: 1.1rem;
   }
 
   .saveBtn {
@@ -125,5 +137,13 @@ resize: none;
     border-bottom-left-radius: 0;
     border-left: 1px dashed black !important;
     border-right: 1px dashed black !important;
+  }
+
+  textarea{
+    box-shadow: none;
+  }
+
+  .bottom-space{
+    height: 10px!important;
   }
 }
